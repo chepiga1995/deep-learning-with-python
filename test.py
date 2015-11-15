@@ -3,8 +3,8 @@ start = time.time()
 from read_fromfile import *
 from libs_for_train import *
 
-SPEED = 0.07
-TRAIN_CIRCLES = 50
+SPEED = 0.05
+TRAIN_CIRCLES = 70
 
 
 
