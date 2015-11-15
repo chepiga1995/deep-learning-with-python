@@ -25,9 +25,9 @@ predict = theano.function(inputs=[X], outputs=pred_y, allow_input_downcast=True)
 
 for x in range(TRAIN_CIRCLES):
 	train(train_img, train_res)
-	# if x % 10:
-	# 	print test_accuracy(TEST_SIZE, predict, test_img, test_res)
-	# 	print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
+	if x % 10 == 0:
+		print test_accuracy(TEST_SIZE, predict, test_img, test_res)
+		print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
 
 print test_accuracy(TEST_SIZE, predict, test_img, test_res)
 print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
