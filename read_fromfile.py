@@ -1,7 +1,7 @@
 from get_from_file_function import get_from_file_train, get_from_file_res, SIZE
 
-TRAIN_SIZE = 200
-TEST_SIZE = 100
+TRAIN_SIZE = 500
+TEST_SIZE = 300
 
 
 
