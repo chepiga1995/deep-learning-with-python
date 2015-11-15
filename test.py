@@ -1,9 +1,10 @@
-
+import time
+start = time.time()
 from read_fromfile import *
 from libs_for_train import *
 
 SPEED = 0.05
-TRAIN_CIRCLES = 100
+TRAIN_CIRCLES = 1
 
 
 
@@ -27,6 +28,9 @@ for x in range(TRAIN_CIRCLES):
 
 print test_accuracy(TEST_SIZE, predict, test_img, test_res)
 print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
+
+end = time.time()
+print end - start
 # D = (result, labels)
 # y = model()
 # x = T.dmatrix('x')
