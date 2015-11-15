@@ -4,9 +4,9 @@ def output(img):
 	out = []
 	for x in range(SIZE):
 		for y in range(SIZE):
-			res = 1
-			if ord(img[x*SIZE + y]) < 128:
-				res = 0 
+			res = ord(img[x*SIZE + y]) / 30.0
+			# if ord(img[x*SIZE + y]) < 128:
+			# 	res = 0 
 			out.append(res)
 	return out   
 

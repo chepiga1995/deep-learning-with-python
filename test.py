@@ -1,37 +1,32 @@
-import numpy as np
-import theano
-import theano.tensor as T
+
 from read_fromfile import *
-rng = np.random
+from libs_for_train import *
+
 SPEED = 0.05
-TRAIN_CIRCLES = 10
+TRAIN_CIRCLES = 100
 
-def floatX(X):
-	return np.asarray(X, dtype=theano.config.floatX)
-def init_weight(share):
-	return theano.shared(floatX(rng.randn(*share) * 0.01))
-def model(x, w):
-	return T.nnet.softmax(T.dot(x, w))
 
-w = init_weight((SIZE * SIZE, 10))
+
+w_h = init_weight((SIZE * SIZE, 625))
+w_o = init_weight((625, 10))
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 
-py_x = model(X, w)
+py_x = model(X, w_h, w_o)
 pred_y = T.argmax(py_x, axis=1)
 # print theano.function([X], py_x)(result[0])
 
 cost = T.mean(T.nnet.categorical_crossentropy(py_x, Y))
-grad = T.grad(cost=cost, wrt=w)
-update = [[w, w - grad * SPEED]]
+update = sgd(cost, [w_h, w_o], SPEED)
 
 train = theano.function(inputs=[X,Y], outputs=cost, updates=update, allow_input_downcast=True)
 predict = theano.function(inputs=[X], outputs=pred_y, allow_input_downcast=True)
 
 for x in range(TRAIN_CIRCLES):
-	train(result, labels_res)
+	train(train_img, train_res)
 
-
+print test_accuracy(TEST_SIZE, predict, test_img, test_res)
+print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
 # D = (result, labels)
 # y = model()
 # x = T.dmatrix('x')
