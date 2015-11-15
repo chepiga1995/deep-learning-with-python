@@ -4,7 +4,7 @@ from read_fromfile import *
 from libs_for_train import *
 
 SPEED = 0.05
-TRAIN_CIRCLES = 100
+TRAIN_CIRCLES = 150
 
 
 
