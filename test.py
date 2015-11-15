@@ -4,12 +4,12 @@ from read_fromfile import *
 from libs_for_train import *
 
 SPEED = 0.04
-TRAIN_CIRCLES = 150
+TRAIN_CIRCLES = 100
 
 
 
-w_h = init_weight((SIZE * SIZE, 800))
-w_o = init_weight((800, 10))
+w_h = init_weight((SIZE * SIZE, 1000))
+w_o = init_weight((1000, 10))
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 
