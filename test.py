@@ -1,5 +1,5 @@
 import time
-start = time.time()
+startt = time.time()
 from read_fromfile import *
 from libs_for_train import *
 
@@ -8,8 +8,8 @@ TRAIN_CIRCLES = 150
 BATCHES = 150
 
 
-w_h = init_weight((SIZE * SIZE, 5000))
-w_o = init_weight((5000, 10))
+w_h = init_weight((SIZE * SIZE, 625))
+w_o = init_weight((625, 10))
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 
@@ -33,8 +33,8 @@ for x in range(TRAIN_CIRCLES):
 print test_accuracy(TEST_SIZE, predict, test_img, test_res)
 print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
 
-end = time.time()
-print end - start
+endt = time.time()
+print endt - startt
 # D = (result, labels)
 # y = model()
 # x = T.dmatrix('x')
