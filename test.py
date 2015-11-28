@@ -3,7 +3,7 @@ start = time.time()
 from read_fromfile import *
 from libs_for_train import *
 
-SPEED = 0.09
+SPEED = 0.05
 TRAIN_CIRCLES = 200
 
 
@@ -17,7 +17,8 @@ pred_y = T.argmax(py_x, axis=1)
 # print theano.function([X], py_x)(result[0])
 
 cost = T.mean(T.nnet.categorical_crossentropy(py_x, Y))
-update = sgd(cost, [w_h], SPEED)
+grad = T.grad(cost=cost, wrt=w_h)
+update = [[w_h, w_h - grad * SPEED]]
 
 train = theano.function(inputs=[X,Y], outputs=cost, updates=update, allow_input_downcast=True)
 predict = theano.function(inputs=[X], outputs=pred_y, allow_input_downcast=True)

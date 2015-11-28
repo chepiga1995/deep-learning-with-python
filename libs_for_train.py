@@ -18,9 +18,3 @@ def test_accuracy(size, predict, test_img, test_res):
 		sum_res += (res[i] == test_res[i].index(1))
 	return float(sum_res) / size
 
-def sgd(cost, params, speed=0.05):
-	y = T.grad(cost=cost, wrt=params)
-	update = []
-	for g, p in zip(y, params):
-		update.append([p, p - g * speed])
-	return update
