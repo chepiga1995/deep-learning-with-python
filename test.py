@@ -4,8 +4,8 @@ from read_fromfile import *
 from libs_for_train import *
 
 SPEED = 0.05
-TRAIN_CIRCLES = 100
-BATCHES = 130
+TRAIN_CIRCLES = 130
+BATCHES = 128
 
 
 w_h = init_weight((SIZE * SIZE, 625))
