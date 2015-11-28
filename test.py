@@ -8,8 +8,8 @@ TRAIN_CIRCLES = 70
 
 
 
-w_h = init_weight((SIZE * SIZE, 1100))
-w_o = init_weight((1100, 10))
+w_h = init_weight((SIZE * SIZE, 800))
+w_o = init_weight((800, 10))
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 
