@@ -10,7 +10,7 @@ BATCHES = 128
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 
-w_h = init_weight((SIZE * SIZE, 625))
+w_h = init_weights((SIZE * SIZE, 625))
 w_h2 = init_weights((625, 625))
 w_o = init_weights((625, 10))
 
