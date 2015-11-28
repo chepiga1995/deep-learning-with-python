@@ -8,8 +8,8 @@ TRAIN_CIRCLES = 150
 BATCHES = 150
 
 
-w_h = init_weight((SIZE * SIZE, 1600))
-w_o = init_weight((1600, 10))
+w_h = init_weight((SIZE * SIZE, 3000))
+w_o = init_weight((3000, 10))
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 
