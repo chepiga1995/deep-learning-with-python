@@ -24,7 +24,8 @@ train = theano.function(inputs=[X,Y], outputs=cost, updates=update, allow_input_
 predict = theano.function(inputs=[X], outputs=pred_y, allow_input_downcast=True)
 
 for x in range(TRAIN_CIRCLES):
-	train(train_img, train_res)
+	for start, end in zip(range(0, len(test_img), 100), range(100, len(test_img), 100):
+		train(train_img[start:end], train_res[start:end])
 	if x % 10 == 0:
 		print test_accuracy(TEST_SIZE, predict, test_img, test_res)
 		print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
