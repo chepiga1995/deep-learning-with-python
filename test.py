@@ -5,7 +5,7 @@ from libs_for_train import *
 
 SPEED = 0.07
 TRAIN_CIRCLES = 150
-BATCHES = 500
+BATCHES = 50
 
 
 w_h = init_weight((SIZE * SIZE, 1600))
