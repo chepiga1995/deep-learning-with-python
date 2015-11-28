@@ -3,9 +3,9 @@ start = time.time()
 from read_fromfile import *
 from libs_for_train import *
 
-SPEED = 0.07
+SPEED = 0.05
 TRAIN_CIRCLES = 150
-BATCHES = 50
+BATCHES = 150
 
 
 w_h = init_weight((SIZE * SIZE, 1600))
