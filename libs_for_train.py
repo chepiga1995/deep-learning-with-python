@@ -7,9 +7,8 @@ def floatX(X):
 	return np.asarray(X, dtype=theano.config.floatX)
 def init_weight(share):
 	return theano.shared(floatX(rng.randn(*share) * 0.01))
-def model(x, w_h, w_o):
-	y = T.nnet.sigmoid(T.dot(x, w_h))
-	return T.nnet.softmax(T.dot(y, w_o))
+def model(x, w_h):
+	return T.nnet.softmax(T.dot(x, w_h))
 
 def test_accuracy(size, predict, test_img, test_res):
 	res = predict(test_img);

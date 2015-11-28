@@ -8,17 +8,16 @@ TRAIN_CIRCLES = 80
 
 
 
-w_h = init_weight((SIZE * SIZE, 1600))
-w_o = init_weight((1600, 10))
+w_h = init_weight((SIZE * SIZE, 10))
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 
-py_x = model(X, w_h, w_o)
+py_x = model(X, w_h)
 pred_y = T.argmax(py_x, axis=1)
 # print theano.function([X], py_x)(result[0])
 
 cost = T.mean(T.nnet.categorical_crossentropy(py_x, Y))
-update = sgd(cost, [w_h, w_o], SPEED)
+update = sgd(cost, [w_h], SPEED)
 
 train = theano.function(inputs=[X,Y], outputs=cost, updates=update, allow_input_downcast=True)
 predict = theano.function(inputs=[X], outputs=pred_y, allow_input_downcast=True)
