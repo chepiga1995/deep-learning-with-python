@@ -3,13 +3,13 @@ start = time.time()
 from read_fromfile import *
 from libs_for_train import *
 
-SPEED = 0.06
+SPEED = 0.07
 TRAIN_CIRCLES = 150
-BATCHES = 200
+BATCHES = 500
 
 
-w_h = init_weight((SIZE * SIZE, 800))
-w_o = init_weight((800, 10))
+w_h = init_weight((SIZE * SIZE, 1600))
+w_o = init_weight((1600, 10))
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 
