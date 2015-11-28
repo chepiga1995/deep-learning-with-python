@@ -23,7 +23,7 @@ params = [w_h, w_h2, w_o]
 updates = RMSprop(cost, params, lr=0.001)
 
 train = theano.function(inputs=[X,Y], outputs=cost, updates=updates, allow_input_downcast=True)
-predict = theano.function(inputs=[X], outputs=pred_y, allow_input_downcast=True)
+predict = theano.function(inputs=[X], outputs=y_x, allow_input_downcast=True)
 
 for x in range(TRAIN_CIRCLES):
 	for start, end in zip(range(0, len(test_img), BATCHES), range(BATCHES, len(test_img), BATCHES)):
