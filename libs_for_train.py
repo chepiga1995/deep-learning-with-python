@@ -8,7 +8,7 @@ rng = np.random
 
 def floatX(X):
 	return np.asarray(X, dtype=theano.config.floatX)
-def init_weight(share):
+def init_weights(share):
 	return theano.shared(floatX(rng.randn(*share) * 0.01))
 def test_accuracy(size, predict, test_img, test_res):
 	res = predict(test_img);
