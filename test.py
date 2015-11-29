@@ -1,6 +1,6 @@
 import scipy.io.wavfile as wav
 import numpy as np
-from features import mfcc
+from mel_from_mlf.features import mfcc
 
 TIME_COF = 10000000.0
 
