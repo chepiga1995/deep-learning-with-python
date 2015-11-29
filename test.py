@@ -1,6 +1,6 @@
 import time
 startt = time.time()
-#from read_fromfile import *
+from read_fromfile import *
 from libs_for_train import *
 from load import mnist
 
