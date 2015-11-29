@@ -12,7 +12,7 @@ BATCHES = 128
 
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
-print train_img[0]
+
 w_h = init_weights((784, 625))
 w_h2 = init_weights((625, 625))
 w_o = init_weights((625, 10))
@@ -37,13 +37,15 @@ for x in range(TRAIN_CIRCLES):
 	for start, end in zip(range(0, len(train_img), BATCHES), range(BATCHES, len(train_img), BATCHES)):
 		cost = train(train_img[start:end], train_res[start:end])
 	if x % 10 == 0:
-		# print np.mean(np.argmax(test_res, axis=1) == predict(test_img))
-		# print np.mean(np.argmax(train_res, axis=1) == predict(train_img))
-		print test_accuracy(TEST_SIZE, predict, test_img, test_res)
-		print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
+		print np.mean(np.argmax(test_res, axis=1) == predict(test_img))
+		print np.mean(np.argmax(train_res, axis=1) == predict(train_img))
+		# print test_accuracy(TEST_SIZE, predict, test_img, test_res)
+		# print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
 
-print test_accuracy(TEST_SIZE, predict, test_img, test_res)
-print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
+print np.mean(np.argmax(test_res, axis=1) == predict(test_img))
+print np.mean(np.argmax(train_res, axis=1) == predict(train_img))
+# print test_accuracy(TEST_SIZE, predict, test_img, test_res)
+# print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
 
 endt = time.time()
 print endt - startt
