@@ -25,7 +25,7 @@ cost = T.mean(T.nnet.categorical_crossentropy(noise_py_x, Y))
 params = [w_h, w_h2, w_o]
 updates = RMSprop(cost, params, lr=0.001)
 
-train = theano.function(inputs=[X,Y], outputs=cost, updates=updates, allow_input_downcast=True)
+train = theano.function(inputs=[X, Y], outputs=cost, updates=updates, allow_input_downcast=True)
 predict = theano.function(inputs=[X], outputs=y_x, allow_input_downcast=True)
 
 for x in range(TRAIN_CIRCLES):
