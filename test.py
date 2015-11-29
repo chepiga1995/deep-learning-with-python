@@ -13,7 +13,7 @@ BATCHES = 128
 X = T.fmatrix('x')
 Y = T.fmatrix('y')
 print train_img[0]
-w_h = init_weights((SIZE * SIZE, 625))
+w_h = init_weights((784, 625))
 w_h2 = init_weights((625, 625))
 w_o = init_weights((625, 10))
 
@@ -28,12 +28,17 @@ updates = RMSprop(cost, params, lr=0.001)
 train = theano.function(inputs=[X, Y], outputs=cost, updates=updates, allow_input_downcast=True)
 predict = theano.function(inputs=[X], outputs=y_x, allow_input_downcast=True)
 
-for x in range(TRAIN_CIRCLES):
-	for start, end in zip(range(0, len(test_img), BATCHES), range(BATCHES, len(test_img), BATCHES)):
-		cost = train(train_img[start:end], train_res[start:end])
-	if x % 10 == 0:
-		print np.mean(np.argmax(test_res, axis=1) == predict(test_img))
-		print np.mean(np.argmax(train_res, axis=1) == predict(train_img))
+for i in range(100):
+    for start, end in zip(range(0, len(train_img), 128), range(128, len(train_img), 128)):
+        cost = train(train_img[start:end], train_res[start:end])
+    print np.mean(np.argmax(test_res, axis=1) == predict(test_img))
+
+# for x in range(TRAIN_CIRCLES):
+# 	for start, end in zip(range(0, len(test_img), BATCHES), range(BATCHES, len(test_img), BATCHES)):
+# 		cost = train(train_img[start:end], train_res[start:end])
+# 	if x % 10 == 0:
+# 		print np.mean(np.argmax(test_res, axis=1) == predict(test_img))
+# 		print np.mean(np.argmax(train_res, axis=1) == predict(train_img))
 		#print test_accuracy(TEST_SIZE, predict, test_img, test_res)
 		#print test_accuracy(TRAIN_SIZE, predict, train_img, train_res)
 
