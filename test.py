@@ -27,7 +27,7 @@ predict = theano.function(inputs=[X], outputs=y_x, allow_input_downcast=True)
 
 for x in range(TRAIN_CIRCLES):
 	for start, end in zip(range(0, len(test_img), BATCHES), range(BATCHES, len(test_img), BATCHES)):
-		train(train_img[start:end], train_res[start:end])
+		cost = train(train_img[start:end], train_res[start:end])
 	if x % 10 == 0:
 		print np.mean(np.argmax(test_res, axis=1) == predict(test_img))
 		print np.mean(np.argmax(train_res, axis=1) == predict(train_img))
