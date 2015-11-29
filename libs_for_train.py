@@ -4,12 +4,11 @@ import theano.tensor as T
 from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
 
 srng = RandomStreams()
-rng = np.random
 
 def floatX(X):
 	return np.asarray(X, dtype=theano.config.floatX)
-def init_weights(share):
-	return theano.shared(floatX(rng.randn(*share) * 0.01))
+def init_weights(shape):
+    return theano.shared(floatX(np.random.randn(*shape) * 0.01))
 def test_accuracy(size, predict, test_img, test_res):
 	res = predict(test_img);
 	sum_res = 0 
