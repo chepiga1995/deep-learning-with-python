@@ -12,7 +12,6 @@ def init_weights(shape):
 def test_accuracy(size, predict, test_img, test_res):
 	res = predict(test_img);
 	sum_res = 0 
-	# print res[0], test_res[0].index(1)
 	for i in range(size):
 		sum_res += (res[i] == test_res[i].index(1))
 	return float(sum_res) / size
