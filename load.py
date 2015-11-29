@@ -4,7 +4,7 @@ SIZE = 28
 TRAIN_SIZE = 60000
 TEST_SIZE = 10000
 datasets_dir = './'
-DIV = 255
+DIV = 255.0
 def one_hot(x,n):
 	if type(x) == list:
 		x = np.array(x)
@@ -31,8 +31,8 @@ def mnist(ntrain=TRAIN_SIZE,ntest=TEST_SIZE,onehot=True):
 	loaded = np.fromfile(file=fd,dtype=np.uint8)
 	teY = loaded[8:].reshape((10000))
 
-	trX = trX/DIV.
-	teX = teX/DIV.
+	trX = trX/DIV
+	teX = teX/DIV
 
 	trX = trX[:ntrain]
 	trY = trY[:ntrain]
