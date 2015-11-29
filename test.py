@@ -2,6 +2,9 @@ import time
 startt = time.time()
 from read_fromfile import *
 from libs_for_train import *
+from load import mnist
+
+train_img, test_img, train_res, test_res = mnist(onehot=True)
 
 SPEED = 0.05
 TRAIN_CIRCLES = 130
