@@ -3,3 +3,4 @@
 **/**/*.pyc
 *.db
 Base_Example/
+sftp-config.json
