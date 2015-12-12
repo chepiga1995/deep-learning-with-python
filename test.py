@@ -70,7 +70,7 @@ w_h = init_weights((117, 1000))
 w_h2 = init_weights((1000, 1000))
 w_h3 = init_weights((1000, 1000))
 w_h4 = init_weights((1000, 1000))
-w_o = init_weights((1000, 53*53))
+w_o = init_weights((1000, 53))
 
 noise_h, noise_h2, noise_h3, noise_h4, noise_py_x = model(X, w_h, w_h2, w_h3, w_h4, w_o, 0.2, 0.5)
 h, h2, h3, h4, py_x = model(X, w_h, w_h2, w_h3, w_h4, w_o, 0., 0.)
