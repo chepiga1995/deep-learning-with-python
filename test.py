@@ -17,7 +17,7 @@ def floatX(X):
     return np.asarray(X, dtype=theano.config.floatX)
 
 def init_weights(shape):
-    return theano.shared(floatX(np.random.randn(*shape) * 0.001))
+    return theano.shared(floatX(np.random.randn(*shape) * 0.01))
 
 def rectify(X):
     return T.maximum(X, 0.)
@@ -69,8 +69,8 @@ Y = T.fmatrix()
 w_h = init_weights((117, 1000))
 w_h2 = init_weights((1000, 1000))
 w_h3 = init_weights((1000, 1000))
-w_h4 = init_weights((1000, 625))
-w_o = init_weights((625, 53*53))
+w_h4 = init_weights((1000, 1000))
+w_o = init_weights((1000, 53*53))
 
 noise_h, noise_h2, noise_h3, noise_h4, noise_py_x = model(X, w_h, w_h2, w_h3, w_h4, w_o, 0.2, 0.5)
 h, h2, h3, h4, py_x = model(X, w_h, w_h2, w_h3, w_h4, w_o, 0., 0.)
@@ -78,7 +78,7 @@ y_x = T.argmax(py_x, axis=1)
 
 cost = T.mean(T.nnet.categorical_crossentropy(noise_py_x, Y))
 params = [w_h, w_h2, w_h3, w_h4, w_o]
-updates = RMSprop(cost, params, lr=0.01)
+updates = RMSprop(cost, params, lr=0.003)
 
 train = theano.function(inputs=[X, Y], outputs=cost, updates=updates, allow_input_downcast=True)
 predict = theano.function(inputs=[X], outputs=y_x, allow_input_downcast=True)

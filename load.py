@@ -21,15 +21,16 @@ def loadRes(file="train_res.db"):
 	with open(file) as data_file:    
 		temp = json.load(data_file)
 		MAP = []	
-		for a in temp:
-			MAP.append(transform(a))
+		for i in len(temp):
+			MAP.append(transform(temp[i], temp[(i - 1) if i > 0 else 0])
 		res = np.array(MAP)
 	return res[:TRAN_SET_N], res[TRAN_SET_N:TEST_SET_N+TRAN_SET_N]		
-def transform(el):
+def transform(el, prev):
 	temp = [0]*len(SOUND_MAP)*len(SOUND_MAP)
 	for i in range(len(SOUND_MAP)):
-		if SOUND_MAP[i] == el:
-			temp[i] = 1
+		for j in range(len(SOUND_MAP)):
+			if SOUND_MAP[i] == el and SOUND_MAP[j] == prev:
+				temp[i*53 + j] = 1
 	try:
 		temp.index(1)
 	except Exception, e:
