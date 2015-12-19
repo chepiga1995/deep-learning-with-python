@@ -3,7 +3,7 @@ import os
 import ujson
 
 ALL = 882512
-TRAN_SET_N = 300000
+TRAN_SET_N = 100
 TEST_SET_N = 100000
 SOUND_MAP_LEN = 53
 SOUND_MAP = [u"sil", u"a0", u"a1", u"a2", u"a4", u"b", u"b'", u"c", u"ch", u"d", u"d'", u"e0", u"f",\

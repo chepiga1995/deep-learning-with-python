@@ -2,7 +2,7 @@ import time
 startt = time.time()
 from load import SOUND_MAP, loadMel, loadRes
 from neural import Neural
-from hmmlearn.hmm import GaussianHMM
+from hmmlearn.hmm import MultinomialHMM
 
 
 SAVE_PATH_SER = '/dev/Deep-learning/'
@@ -24,29 +24,29 @@ PRINT_TO = 50
 STEP_SHOW = 3
 RHO = 0.9
 EPSILON = 1e-4
-STEP = 30000
+STEP = 500
 print "test"
 
-trX, teX = loadMel()
+# trX, teX = loadMel()
 trY, teY = loadRes()
 
 
 print len(trY), len(teY) 
 
-neur = Neural()
+# neur = Neural()
 
-neur.load_from_file(WEIGHTS_FILE)
-train_arr = neur.result(trX).tolist()
-# train_arr = map(lambda x: SOUND_MAP[x], train_arr)
+# neur.load_from_file(WEIGHTS_FILE)
+# train_arr = neur.result(trX).tolist()
+train_arr = trY.tolist()#map(lambda x: x.index(1), trY.tolist())
 # print train_arr[:5]
-model = GaussianHMM(n_components=53, covariance_type="diag", n_iter=10)
-
-for start, end in zip(range(0, len(trY), STEP), range(STEP, len(trY), STEP)):
-    model.fit(train_arr[start:end])
-    endt = time.time()
-    print endt - startt
-
-print model.predict(train_arr[:50]).tolist()
+model = MultinomialHMM(n_components=53, n_iter=1)
+model.fit(train_arr)
+# for start, end in zip(range(0, len(trY), STEP), range(STEP, len(trY), STEP)):
+#     model.fit(train_arr[start:end])
+#     endt = time.time()
+#     print endt - startt
+print len(train_arr)
+print model.predict(train_arr).tolist()[:50]
 print map(lambda x: SOUND_MAP[x.index(1)],trY[:50].tolist())
 # neur.train(trX, teX, trY, teY, plot=True, epochs=TIMES, shortcard=SHORTCARD, speed=SPEED, drop_input=DROP_INPUT, drop_hidden=DROP_HIDDEN, step_show=STEP_SHOW, rho=RHO, epsilon=EPSILON)
 
