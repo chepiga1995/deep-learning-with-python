@@ -2,5 +2,6 @@
 **/*.pyc
 **/**/*.pyc
 *.db
+test_wav/*
 Base_Example/
 sftp-config.json
