@@ -16,7 +16,7 @@ ARR_SHAPE = [\
     (800, 800),\
     (800, 53)\
 ]
-TIMES = 200
+TIMES = 100
 SHORTCARD = 256
 SPEED = 0.01
 DROP_INPUT = 0.2
@@ -63,7 +63,7 @@ class Neural:
     def _floatX(self, X):
         return np.asarray(X, dtype=theano.config.floatX)
     def _init_weights(self, shape):
-        return theano.shared(self._floatX(np.random.randn(*shape) * 0.01))
+        return theano.shared(self._floatX(np.random.randn(*shape) * 0.05))
     def _softmax(self, X):
         e_x = T.exp(X - X.max(axis=1).dimshuffle(0, 'x'))
         return e_x / e_x.sum(axis=1).dimshuffle(0, 'x')    

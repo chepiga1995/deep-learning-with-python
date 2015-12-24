@@ -3,13 +3,13 @@ import scipy.io.wavfile as wav
 import numpy as np
 from features import mfcc
 import re
-import json 
+import ujson 
 
 
 DIRECTORY_PATH = '/home/ura/Documents/Deep-learning/Base_Example/Train_Set'
-DIRECTORY_PATH_SER = '/dev/Deep-learning/Base_Example/Train_Set'
+DIRECTORY_PATH_SER = '/home/ubuntu/Deep-learning/Base_Example/Train_Set'
 SAVE_PATH = '/home/ura/Documents/Deep-learning/'
-SAVE_PATH_SER = '/dev/Deep-learning/'
+SAVE_PATH_SER = '/home/ubuntu/Deep-learning/'
 TARAIN = 'train_mel.db'
 TARAIN_RES = 'train_res.db'
 FILE = 'train_phones.mlf'
@@ -90,7 +90,7 @@ def mel_from_mlf(filename=FILE):
 					data = mel_seq_from_file(wav_name, arr_time)
 				else:
 					data = np.append(data, mel_seq_from_file(wav_name, arr_time), axis=0)				
-				print len(data), len(res)
+				print len(data), len(res), wav_name
 				arr_time = []
 				
 	res = np.array(res)		
@@ -100,8 +100,8 @@ def mel_from_mlf(filename=FILE):
 	
 def write_to_file(arr, filename):
 	with open(filename, 'w') as f:
-		json.dump(arr.tolist(), f)
+		ujson.dump(arr.tolist(), f)
 
 
 # print 130500000 / TIME_COF
-mel_from_mlf()       
+# mel_from_mlf()       

@@ -1,42 +1,14 @@
 # -*- encoding: koi8-r -*-
+import scipy.io.wavfile as wav
+import numpy as np
+from mel_from_mlf import mfcc
+import os
 
-import codecs
 mas = ['а','б','в','г','д','е','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я']
-MAP = {
-	224: 'а',
-	225: 'б',
-	226: 'в',
-	227: 'г',
-	228: 'д',
-	229: 'е',
-	230: 'ж',
-	231: 'з',
-	232: 'и',
-	233: 'й',
-	234: 'к',
-	235: 'л',
-	236: 'м',
-	237: 'н',
-	238: 'о',
-	239: 'п',
-	240: 'р',
-	241: 'с',
-	242: 'т',
-	243: 'у',
-	244: 'ф',
-	245: 'х',
-	246: 'ц',
-	247: 'ч',
-	248: 'ш',
-	249: 'щ',
-	250: 'ъ',
-	251: 'ы',
-	252: 'ь',
-	253: 'э',
-	254: 'ю',
-	255: 'я'
-}	
 
+DIRECTORY_PATH = '/home/ura/Documents/Deep-learning/'
+WINLEN = 0.025
+WINSTEP = 0.01
 def main_decode(num):
 	if ord(num) >= 224:
 		return mas[ord(num) - 224]
@@ -44,7 +16,15 @@ def main_decode(num):
 		return '-'
 	else:	 
 		return num
-with open("test_wav/f00526_100200005.txt", 'r') as f:
-	print ''.join((map(main_decode, string[20:])))
+def translate(filename):		
+	with open(filename, 'r') as f:
+		string = f.read()
+		arr_res = map(main_decode, string)
+		res = ''.join(arr_res)
+		return res
+def procces_file(filename):
+	rate, arr_frec = wav.read(os.path.join(DIRECTORY_PATH, filename + '.wav'))
+	arr_mfcc = mfcc(arr_frec, samplerate=rate, winlen=WINLEN, winstep=WINSTEP)
+	return arr_mfcc, translate(filename + ".txt")
 
 
